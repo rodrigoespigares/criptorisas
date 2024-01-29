@@ -19,7 +19,7 @@
 }
 .description{
     max-height: 25vh;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 #detalle .list-group-item-light{
     background-color: transparent;
