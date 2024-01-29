@@ -1,0 +1,30 @@
+<section class="min-vh-50" *ngIf="service.personal.length">
+    <table class="w-100 text-center table table-striped">
+        <thead>
+            <th>Activos</th>
+            <th>Precio</th>
+            <th>Volumen</th>
+            <th>Capitalización</th>
+            <th></th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of service.personal" data-bs-toggle="modal" data-bs-target="#modalId">
+                <td class="py-2"><img [src]="item.image.small" alt=""> {{ item.name}} <span>{{ item.symbol}}</span></td>
+                <td class="py-2">{{item.market_data.current_price.eur | formatEur}}</td>
+                <td>{{item.market_data.total_volume.eur | formatEur}}</td>
+                <td>{{item.market_data.market_cap.eur | formatEur}}</td>
+                <td>
+                    <button [routerLink]="'/detalle/'+item.id" class="btn btn-light">Ver detalle</button>
+                    <button (click)="unfollow(item.id)" class="btn btn-light">
+                        Dejar de seguir
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+<section id="personal" class="d-flex flex-column justify-content-center align-items-center min-vh-50" *ngIf="!service.personal.length">
+    <h2 class="display-2">Aún no tienes monedas</h2>
+    <p>Puedes ir a la zona de empezar ahora para empezar a seguir tu primera moneda ahora</p>
+    <a routerLink="/start-now">Click para ver las monedas</a>
+</section>

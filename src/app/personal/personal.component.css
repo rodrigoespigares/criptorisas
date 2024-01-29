@@ -1,0 +1,7 @@
+.min-vh-50{
+    min-height: 58vh;
+}
+#personal a{
+    text-decoration: none;
+    color: var(--secondary);
+}

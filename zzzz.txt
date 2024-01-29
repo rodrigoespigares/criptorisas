@@ -1,0 +1,11 @@
+Cada vez que se selecciona una criptomoneda, debe aparecer la información básica de ésta en una tabla en el componente monedas (ver imagen de ejemplo). Del mismo modo, se debe permitir dejar de seguir una criptomoneda. 
+La  información a mostrar en la tabla anterior será: imagen, nombre, símbolo, precio en euros, capitalización en euros, volumen en euros, así como valores más altos y bajos en las últimas 24 horas.
+Al seleccionar una moneda en la tabla anterior, debe mostrarse el componente detalle, que haciendo uso de la información detallada proporcionada por la API deberá maquetar los datos más relevantes. Estos son: imagen, nombre, símbolo, descripción, links (web, redes sociales y Github), fecha en la que surgió y valor actual en euros.
+Desde el detalle debe ser posible volver al portfolio.
+La aplicación debe recordar la selección del usuario en la máquina.
+
+
+(1 punto) En el componente detalleMoneda se muestra un gráfico con el histórico de cotización.
+(1 punto) Los datos se refrescan cada 5 segundos (tabla de portfolio)
+
+FALTA BUSCAR

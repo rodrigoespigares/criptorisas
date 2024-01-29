@@ -1,0 +1,70 @@
+<!-- Modal trigger button -->
+
+<!-- Modal Body -->
+<!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+<div class="position-absolute end-0 d-flex align-items-center justify-content-end px-5">
+    <button [routerLink]="service.rutaAnterior" type="button" class="btn-close" aria-label="Close"></button>
+</div>
+<section id="detalle" *ngIf="service.detalleSearch" class="d-flex w-100 vh-90 px-5" >
+    
+    <div class="d-flex w-30 h-100 p-5 flex-column justify-content-evenly border-end-primary">
+        <div class="d-flex w-100 align-items-center">
+            <img class="w-10" src="{{service.detalleSearch.image.small}}" alt="{{service.detalleSearch.name}}">
+            <h2>{{service.detalleSearch.name}}</h2>
+            <span>{{service.detalleSearch.symbol}}</span>
+        </div>
+        <div>
+            <p class="description"
+                [innerHTML]="(service.detalleSearch.description.es == '' ? (service.detalleSearch.description.en == '' ? 'Descripción no válida' : service.detalleSearch.description.en) : service.detalleSearch.description.es)">
+            </p>
+            <div>
+                <h3>{{service.detalleSearch.market_data.current_price.eur}} €</h3>
+            </div>
+            <div *ngIf="sesion.usuario != ''" class="d-flex flex-column align-items-center w-">
+                <button class="w-100 btn btn-secondary d-flex align-items-center" *ngIf="!store.isFollowing"
+                    (click)="add(service.detalleSearch.id)">
+                    <div class="w-5 mx-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14">
+                            <path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round"
+                                d="M8.266 11.908a1.773 1.773 0 0 1-2.527 0L1.49 7.7c-2.84-2.842.87-9.12 5.511-4.478c4.634-4.633 8.344 1.644 5.511 4.478z" />
+                        </svg>
+                    </div>
+                    Empezar a seguir
+                </button>
+                <button class="w-100 btn btn-secondary d-flex align-items-center" *ngIf="store.isFollowing"
+                    (click)="unfollow(service.detalleSearch.id)">
+                    <div class="w-5 mx-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14">
+                            <path fill="white" fill-rule="evenodd"
+                                d="M3.788 1.314c.988.02 2.085.49 3.214 1.56c1.127-1.067 2.223-1.536 3.21-1.555c1.04-.02 1.918.46 2.536 1.18c1.218 1.42 1.47 3.85-.058 5.377l-.001.001l-4.247 4.208c-.81.802-2.07.802-2.88 0L1.316 7.877C-.217 6.343.032 3.913 1.25 2.491c.617-.72 1.495-1.2 2.537-1.178Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    Dejar de seguir
+                </button>
+            </div>
+            <button class="btn btn-secondary" *ngIf="sesion.usuario == ''" routerLink="/login">Inicia sesion ahora</button>
+        </div>
+        <div>
+            <h5>Valores de la moneda:</h5>
+            <p>Precio más alto últimas 24h: {{service.detalleSearch.market_data.high_24h.eur}} €</p>
+            <p>Precio más bajo últimas 24h: {{service.detalleSearch.market_data.low_24h.eur}} €</p>
+            <p>Volumen total: {{service.detalleSearch.market_data.total_volume.eur}} €</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <h5>Web de interés:</h5>
+            <li class="list-group-item list-group-item-light" *ngIf="service.detalleSearch.links.homepage[0] != ''"><a target="_blank" [href]="service.detalleSearch.links.homepage[0]">{{service.detalleSearch.links.homepage[0]}}</a></li>
+            <li class="list-group-item list-group-item-light" *ngIf="service.detalleSearch.links.repos_url.github[0]"><a target="_blank" [href]="service.detalleSearch.links.repos_url.github[0]">{{service.detalleSearch.links.repos_url.github[0]}}</a></li>
+            <li class="list-group-item list-group-item-light" *ngIf="service.detalleSearch.links.twitter_screen_name != ''"><a target="_blank" [href]="'https://www.twitter.com/'+service.detalleSearch.links.twitter_screen_name">twitter.com/{{service.detalleSearch.links.twitter_screen_name}}</a></li>
+        </ul>
+    </div>
+    <div class="w-100 h-100 d-flex flex-column justify-content-center align-items-center">
+        <app-chart [cargarID]="id" class="w-100"></app-chart>
+    </div>
+    
+</section>
+<section id="detalle" *ngIf="!service.detalleSearch" class="d-flex w-100 vh-90 px-5 flex-column align-items-center justify-content-center" >
+    <h2 class="display-1">Fallo de carga</h2>
+    <p>vuelve a intentarlo mas tarde</p>
+    <a [routerLink]="service.rutaAnterior"> Volver atrás</a>
+</section>

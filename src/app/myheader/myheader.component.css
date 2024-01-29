@@ -1,0 +1,26 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    position: sticky;
+    top: 0;
+    background-color: var(--bs-primary-rgb);
+    z-index: 100;
+}
+.activeLink{
+    border-bottom: .2rem solid var(--bs-secondary-rgb);
+}
+@font-face {
+    font-family: 'foxgrab';
+    src: url('../fonts/Foxgrab.ttf');
+}
+header h1{
+    font-family: 'foxgrab';
+    cursor: pointer;
+}
+.w-10{
+    width: 10%;
+} 
+.h-10{
+    height: 10%;
+}

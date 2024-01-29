@@ -1,0 +1,49 @@
+<section id="start-now" class="d-flex flex-column align-items-center text-center">
+    <section class="d-flex flex-column align-items-center justify-content-center w-100 start-now__banner">
+        <h2>El intercambio más rápido de criptomonedas en el que confían millones de usuarios.</h2>
+        <p>Comisiones bajas. Intercambios rápidos. Servicio excepcional.</p>
+        <div class=" d-flex w-10 vh-15 justify-content-evenly flex-column">
+            <button *ngIf="sesion.usuario == ''" class="btn btn-secondary" routerLink="/login">Realizar operaciones</button>
+            <div class="input-group w-100">
+                <input class="form-control" type="text" [(ngModel)]="busqueda" (keyup)="buscando()">
+                <button class="btn btn-outline-secondary" (click)="buscando()"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+    </section>
+    <section class="start-now__table">
+        <table class="w-100 table table-striped" *ngIf="!isSearching">
+            <thead>
+                <th>Activos</th>
+                <th>Precio</th>
+                <th>% 24h</th>
+                <th>Gráfica</th>
+                <th>Volumen</th>
+                <th>Capitalización</th>
+                <th></th>
+            </thead>
+            <tbody>
+                <tr (click)="mostrarDetalle(item.item.id)" *ngFor="let item of service.top7" data-bs-toggle="modal" data-bs-target="#modalId">
+                    <td class="py-2"><img [src]="item.item.small" alt=""> {{ item.item.name}} <span>{{ item.item.symbol}}</span></td>
+                    <td class="py-2">{{item.item.data.price | dolarEuro}}</td>
+                    <td class="py-2" [ngClass]="item.item.data.price_change_percentage_24h.eur  >= 0?green:red">{{item.item.data.price_change_percentage_24h.eur}}</td>                    
+                    <td><img [src]="item.item.data.sparkline" alt=""></td>
+                    <td>{{item.item.data.total_volume | dolarEuro}}</td>
+                    <td>{{item.item.data.market_cap | dolarEuro}}</td>
+                    <td>
+                        <button class="btn btn-light">Ver detalle</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="w-100" *ngIf="isSearching">
+            <thead>
+                <th>Activos</th>
+            </thead>
+            <tbody>
+                <tr (click)="mostrarDetalle(item.id)" *ngFor="let item of service.buscar" data-bs-toggle="modal" data-bs-target="#modalId">
+                    <td class="py-2"><img [src]="item.thumb" alt=""> {{ item.name}} <span>{{ item.symbol}}</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</section>

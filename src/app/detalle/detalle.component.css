@@ -1,0 +1,33 @@
+.max-w-50{
+    max-width: 50%;
+}
+.vh-90{
+    height: 90vh;
+}
+.w-30{
+    width: 30%;
+}
+.w-5{
+    width: 2.5rem;
+}
+.w-10{
+    width: 10%;
+}
+.my-width{
+    min-width: 50vw;
+    width: 50vw;
+}
+.description{
+    max-height: 25vh;
+    overflow: scroll;
+}
+#detalle .list-group-item-light{
+    background-color: transparent;
+}
+#detalle a{
+    text-decoration: none;
+    color: var(--secondary);
+}
+.border-end-primary{
+    border-right:.1rem solid var(--primary);
+}

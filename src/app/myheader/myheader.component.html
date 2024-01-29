@@ -1,0 +1,22 @@
+<header class="pt-3 ">
+    <h1 routerLink="/">Criptorisas</h1>
+    <nav>
+        <button routerLink="/index" class="btn" routerLinkActive="activeLink">Home</button>
+        <button routerLink="/start-now" class="btn" routerLinkActive="activeLink">Empezar ahora</button>
+        <button routerLink="/cartera" *ngIf="sesion.usuario!= ''" class="btn"
+            routerLinkActive="activeLink">Cartera</button>
+    </nav>
+    <nav class="d-flex justify-content-evenly w-25">
+        <button *ngIf="sesion.usuario==''" routerLink="/login" class="btn btn-secondary w-10 h-10">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24">
+                <circle cx="12" cy="6" r="4" fill="white" />
+                <path fill="white" d="M20 17.5c0 2.485 0 4.5-8 4.5s-8-2.015-8-4.5S7.582 13 12 13s8 2.015 8 4.5"
+                    opacity=".5" />
+            </svg>
+        </button>
+        <div *ngIf="sesion.usuario != ''" class="w-100 d-flex justify-content-evenly">
+            <span>Hola, {{sesion.datos.email.split("@")[0]}}</span>
+            <button  (click)="cerrarSession()" class="btn btn-secondary">Cerrar sesión</button>
+        </div>
+    </nav>
+</header>

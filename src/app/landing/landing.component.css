@@ -1,0 +1,28 @@
+.min-vh-95{
+    min-height: 95vh;
+}
+#hero h2{
+    font-weight: 800;
+    font-size: 3rem;
+}
+#hero h2 span{
+    font-family: 'foxgrab';
+}
+#info{
+    background-color: #eee;
+    min-height: 60vh;
+}
+.info__svg{
+    width: 1.5rem;
+}
+#end{
+    min-height: 50vh;
+}
+.end__svg{
+    width: 5rem;
+}
+.prueba{
+    background: rgb(235,240,112);
+    background: radial-gradient(circle, rgba(235,240,112,1) 0%, rgba(255,215,0,0) 70%);
+    border-radius: 70%;
+}
